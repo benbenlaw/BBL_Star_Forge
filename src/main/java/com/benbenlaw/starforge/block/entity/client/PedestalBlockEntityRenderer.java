@@ -69,7 +69,7 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
         float spinMultiplier = 1f + moveProgress * 20f;
         poseStack.mulPose(Axis.YP.rotationDegrees(rotationBase * spinMultiplier));
 
-        float scale = 1f - (float)Math.pow(moveProgress, 1.5) * 0.8f;
+        float scale = 1f - (float) Math.pow(moveProgress, 1.5) * 0.8f;
         poseStack.scale(scale, scale, scale);
 
         BakedModel model = itemRenderer.getModel(stack, level, null, 0);
@@ -90,7 +90,7 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
     private static @NotNull Vec3 getVec3(PedestalBlockEntity entity, StarForgeBlockEntity forge, float moveProgress) {
         Vec3 start = new Vec3(
                 entity.getBlockPos().getX() + 0.5,
-                entity.getBlockPos().getY() + 1.5,
+                entity.getBlockPos().getY() + 1.2,
                 entity.getBlockPos().getZ() + 0.5
         );
 

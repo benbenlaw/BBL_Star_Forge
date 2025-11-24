@@ -45,6 +45,7 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
     boolean isCrafting = false;
     private RecipeHolder<StarForgeRecipe> currentRecipe = null;
     private List<BlockPos> activePedestalPositions = new ArrayList<>();
+    private ItemStack incomingOutput;
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(2) {
 
@@ -196,6 +197,8 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
                 .filter(recipe -> {
                     // Main input
                     if (!recipe.value().input().test(recipeInput.getItem(0))) return false;
+
+                    incomingOutput = recipe.value().result();
 
                     if (recipe.value().extraIngredients().isPresent()) {
                         List<Ingredient> extras = new ArrayList<>(recipe.value().extraIngredients().get());
@@ -410,6 +413,10 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
         return maxProgress;
     }
 
+    public ItemStack getIncomingOutput() {
+        return incomingOutput;
+    }
+
     @Override
     public void setHandler(ItemStackHandler handler) {
         for (int i = 0; i < handler.getSlots(); i++) {
@@ -440,6 +447,9 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
         }
         tag.put("activePedestalPositions", posList);
 
+        if (incomingOutput != null && !incomingOutput.isEmpty()) {
+            tag.put("incomingOutput", incomingOutput.save(provider));
+        }
     }
 
     @Override
@@ -451,6 +461,12 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
         progress = tag.getInt("progress");
         maxProgress = tag.getInt("maxProgress");
         isCrafting = tag.getBoolean("isCrafting");
+
+        if (tag.contains("incomingOutput", Tag.TAG_COMPOUND)) { // 10 = CompoundTag
+            incomingOutput = ItemStack.parse(provider, tag.getCompound("incomingOutput")).get();
+        } else {
+            incomingOutput = ItemStack.EMPTY;
+        }
 
         activePedestalPositions.clear();
         ListTag posList = tag.getList("activePedestalPositions", Tag.TAG_COMPOUND);

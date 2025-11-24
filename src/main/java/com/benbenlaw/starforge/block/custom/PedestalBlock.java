@@ -17,7 +17,9 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,7 +27,13 @@ import org.jetbrains.annotations.Nullable;
 public class PedestalBlock extends BaseEntityBlock {
 
     public static final MapCodec<PedestalBlock> CODEC = simpleCodec(PedestalBlock::new);
-    private static final VoxelShape SHAPE = Block.box(4.0F, 0.0F, 4.0F, 12.0F, 14.0F, 12.0F);
+    private static VoxelShape SHAPE = Shapes.empty();
+
+    static {
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.25, 0.0625, 0.25, 0.75, 0.1875, 0.75), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.25, 0.4375, 0.25, 0.75, 0.5625, 0.75), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.1875, 0.5625, 0.1875, 0.8125, 0.875, 0.8125), BooleanOp.OR);
+    }
 
     public PedestalBlock(Properties properties) {
         super(properties);

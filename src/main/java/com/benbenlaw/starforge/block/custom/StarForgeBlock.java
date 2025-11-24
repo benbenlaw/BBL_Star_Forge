@@ -20,7 +20,9 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +30,20 @@ import org.jetbrains.annotations.Nullable;
 public class StarForgeBlock extends BaseEntityBlock {
 
     public static final MapCodec<StarForgeBlock> CODEC = simpleCodec(StarForgeBlock::new);
-    private static final VoxelShape SHAPE = Block.box(4.0F, 0.0F, 4.0F, 12.0F, 14.0F, 12.0F);
+    private static VoxelShape SHAPE = Shapes.empty();
+
+    static {
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.25, 0.0625, 0.25, 0.75, 0.1875, 0.75), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.1875, 0.4375, 0.1875, 0.8125, 0.5625, 0.8125), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.0625, 0.5625, 0.0625, 0.9375, 0.875, 0.9375), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.1875, 0.3125, 0.1875, 0.8125, 0.4375, 0.8125), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.25, 0.1875, 0.25, 0.75, 0.3125, 0.75), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.1875, 0, 0.1875, 0.8125, 0.0625, 0.8125), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.0625, 0.375, 0.0625, 0.125, 0.5625, 0.125), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.875, 0.375, 0.0625, 0.9375, 0.5625, 0.125), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.875, 0.375, 0.875, 0.9375, 0.5625, 0.9375), BooleanOp.OR);
+        SHAPE = Shapes.join(SHAPE, Shapes.box(0.0625, 0.375, 0.875, 0.125, 0.5625, 0.9375), BooleanOp.OR);
+    }
 
     public StarForgeBlock(Properties properties) {
         super(properties);
