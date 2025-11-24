@@ -1,0 +1,27 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    }
+  ],
+  "input": {
+    "item": "starforge:tier_1_star_forge_cap"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:tier_2_star_forge_cap"
+  },
+  "star_power": 500,
+  "tier": 1
+}

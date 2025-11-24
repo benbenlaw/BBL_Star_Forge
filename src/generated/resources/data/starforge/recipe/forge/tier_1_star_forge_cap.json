@@ -1,0 +1,27 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    }
+  ],
+  "input": {
+    "item": "minecraft:beacon"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:tier_1_star_forge_cap"
+  },
+  "star_power": 250,
+  "tier": 0
+}

@@ -1,0 +1,13 @@
+Star Forge
+
+1.0.0
+- Initial release of Star Forge.
+
+Notes
+- Tier -1 - no structure required
+- Tier 0 - structure required no caps
+- Tier 1 - structure required with tier 1 caps
+- Tier 2 - structure required with tier 2 caps
+- Tier 3 - structure required with tier 3 caps
+- Tier 4 - structure required with tier 4 caps
+- Tier 5 - structure required with tier 5 caps

@@ -1,0 +1,12 @@
+{
+  "type": "starforge:star_forge",
+  "tier": -1,
+  "star_power": 0,
+  "duration": 200,
+  "input": {
+    "item": "minecraft:gold_block"
+  },
+  "result": {
+    "id": "minecraft:emerald_block"
+  }
+}

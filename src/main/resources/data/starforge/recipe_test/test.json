@@ -1,0 +1,12 @@
+{
+  "type": "starforge:star_forge",
+  "tier": 1,
+  "star_power": 1000,
+  "duration": 200,
+  "input": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "minecraft:iron_block"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:storage_blocks/gold"
+    },
+    {
+      "tag": "c:storage_blocks/gold"
+    },
+    {
+      "tag": "c:storage_blocks/gold"
+    },
+    {
+      "tag": "c:storage_blocks/gold"
+    }
+  ],
+  "input": {
+    "item": "starforge:white_star"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:yellow_star"
+  },
+  "star_power": 2000,
+  "tier": 2
+}

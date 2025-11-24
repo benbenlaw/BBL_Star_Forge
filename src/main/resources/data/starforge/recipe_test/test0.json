@@ -1,0 +1,12 @@
+{
+  "type": "starforge:star_forge",
+  "tier": 0,
+  "star_power": 1000,
+  "duration": 200,
+  "input": {
+    "item": "minecraft:dirt"
+  },
+  "result": {
+    "id": "minecraft:grass_block"
+  }
+}

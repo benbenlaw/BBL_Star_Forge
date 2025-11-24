@@ -1,0 +1,44 @@
+{
+  "type": "starforge:star_forge",
+  "tier": 1,
+  "star_power": 20,
+  "duration": 200,
+  "input": {
+    "item": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "minecraft:netherite_ingot"
+  },
+  "extra_ingredients": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:diamond"
+    }
+  ]
+}

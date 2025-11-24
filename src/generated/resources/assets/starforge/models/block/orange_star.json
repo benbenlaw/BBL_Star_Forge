@@ -1,0 +1,8 @@
+{
+  "parent": "starforge:block/mini_star",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "starforge:block/orange_star",
+    "particle": "starforge:block/orange_star"
+  }
+}

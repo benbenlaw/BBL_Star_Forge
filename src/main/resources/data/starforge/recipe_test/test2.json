@@ -1,0 +1,12 @@
+{
+  "type": "starforge:star_forge",
+  "tier": 5,
+  "star_power": 5000,
+  "duration": 200,
+  "input": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:diamond_block"
+  }
+}

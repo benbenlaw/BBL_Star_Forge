@@ -1,0 +1,27 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    }
+  ],
+  "input": {
+    "item": "minecraft:nether_star"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:blue_star"
+  },
+  "star_power": 0,
+  "tier": 0
+}

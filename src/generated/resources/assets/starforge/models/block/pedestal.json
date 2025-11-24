@@ -1,0 +1,8 @@
+{
+  "parent": "starforge:block/pedestal_model",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "starforge:block/pedestal",
+    "particle": "starforge:block/pedestal"
+  }
+}

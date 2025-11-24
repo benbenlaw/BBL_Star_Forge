@@ -1,0 +1,27 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    }
+  ],
+  "input": {
+    "item": "starforge:blue_star"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:white_star"
+  },
+  "star_power": 1000,
+  "tier": 1
+}

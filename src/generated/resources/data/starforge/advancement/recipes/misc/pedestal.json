@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_star": {
+      "conditions": {
+        "items": [
+          {
+            "items": "starforge:cosmic_planks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "starforge:pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_star"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "starforge:pedestal"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:ingots/netherite"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/netherite"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/copper"
+    },
+    {
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "input": {
+    "tag": "c:ingots/iron"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:star_ingot"
+  },
+  "star_power": 1000,
+  "tier": 5
+}

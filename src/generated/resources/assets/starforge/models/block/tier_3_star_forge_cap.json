@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "starforge:block/tier_3_star_forge_cap"
+  }
+}

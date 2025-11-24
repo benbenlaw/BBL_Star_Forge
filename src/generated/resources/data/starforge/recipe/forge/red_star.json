@@ -1,0 +1,27 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:storage_blocks/netherite"
+    },
+    {
+      "tag": "c:storage_blocks/netherite"
+    },
+    {
+      "tag": "c:storage_blocks/netherite"
+    },
+    {
+      "tag": "c:storage_blocks/netherite"
+    }
+  ],
+  "input": {
+    "item": "starforge:orange_star"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:red_star"
+  },
+  "star_power": 8000,
+  "tier": 4
+}

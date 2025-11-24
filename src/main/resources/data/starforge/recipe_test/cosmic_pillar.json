@@ -1,0 +1,12 @@
+{
+  "type": "starforge:star_forge",
+  "tier": -1,
+  "star_power": 0,
+  "duration": 50,
+  "input": {
+    "tag": "minecraft:logs"
+  },
+  "result": {
+    "id": "starforge:cosmic_pillar"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "tag": "c:ingots/gold"
+    },
+    "B": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "C": {
+      "item": "minecraft:anvil"
+    },
+    "D": {
+      "tag": "c:storage_blocks/iron"
+    },
+    "E": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "CEC",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "starforge:star_forge"
+  }
+}

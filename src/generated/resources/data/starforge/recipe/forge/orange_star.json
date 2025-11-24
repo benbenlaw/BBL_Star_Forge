@@ -1,0 +1,27 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 200,
+  "extra_ingredients": [
+    {
+      "tag": "c:storage_blocks/diamond"
+    },
+    {
+      "tag": "c:storage_blocks/diamond"
+    },
+    {
+      "tag": "c:storage_blocks/diamond"
+    },
+    {
+      "tag": "c:storage_blocks/diamond"
+    }
+  ],
+  "input": {
+    "item": "starforge:yellow_star"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:orange_star"
+  },
+  "star_power": 4000,
+  "tier": 3
+}

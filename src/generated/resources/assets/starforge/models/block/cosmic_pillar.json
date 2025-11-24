@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "starforge:block/cosmic_pillar_top",
+    "side": "starforge:block/cosmic_pillar"
+  }
+}

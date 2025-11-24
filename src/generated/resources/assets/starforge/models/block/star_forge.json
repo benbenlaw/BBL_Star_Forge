@@ -1,0 +1,8 @@
+{
+  "parent": "starforge:block/star_forge_model",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "starforge:block/star_forge",
+    "particle": "starforge:block/star_forge"
+  }
+}
