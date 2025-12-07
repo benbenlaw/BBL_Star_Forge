@@ -1,4 +1,7 @@
-// 1.21.1	2025-11-24T12:05:43.7466047	starforge Block Tags
+// 1.21.1	2025-11-25T17:21:31.1251185	starforge Block Tags
+b097dde9b34708a7e7b128a423772482792ee27c data/minecraft/tags/block/mineable/axe.json
+7693a67cecc0f2d0854c5b0ef1f68bfd4c73a53a data/minecraft/tags/block/mineable/pickaxe.json
+4abebdc7f21fe6dd16072d27ade54f1efec15e1d data/starforge/tags/block/stars.json
 c061087994ede0ee5f30580d13760b9212884533 data/starforge/tags/block/star_forge_base_blocks.json
 e49bedca4fcba584cc0f4d6c80f69dd18a5a1c06 data/starforge/tags/block/star_forge_pillar_blocks.json
 71d4c0351a0e2c8fbcf0b2a9ca5827985fd00026 data/starforge/tags/block/star_forge_tier_1_cap.json

@@ -19,6 +19,7 @@ public class SFItemModels extends ItemModelProvider {
     protected void registerModels() {
 
         simpleItem(SFItems.STAR_INGOT);
+        simpleItem(SFItems.STAR_GEM);
 
 
     }

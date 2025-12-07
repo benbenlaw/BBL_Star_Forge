@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "starforge:tier_2_star_forge_cap"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "starforge:blocks/tier_2_star_forge_cap"
+}

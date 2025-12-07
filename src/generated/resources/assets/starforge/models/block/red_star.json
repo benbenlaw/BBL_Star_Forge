@@ -1,5 +1,5 @@
 {
-  "parent": "starforge:block/mini_star",
+  "parent": "starforge:block/star",
   "render_type": "minecraft:cutout",
   "textures": {
     "all": "starforge:block/red_star",

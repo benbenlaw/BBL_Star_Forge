@@ -20,6 +20,7 @@ public class SFTags  {
         public static final TagKey<Block> STAR_FORGE_TIER_3_CAP = tag("star_forge_tier_3_cap");
         public static final TagKey<Block> STAR_FORGE_TIER_4_CAP = tag("star_forge_tier_4_cap");
         public static final TagKey<Block> STAR_FORGE_TIER_5_CAP = tag("star_forge_tier_5_cap");
+        public static final TagKey<Block> STARS = tag("stars");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(StarForge.MOD_ID, name));
@@ -39,6 +40,7 @@ public class SFTags  {
         public static final TagKey<Item> STAR_FORGE_TIER_3_CAP = tag("star_forge_tier_3_cap");
         public static final TagKey<Item> STAR_FORGE_TIER_4_CAP = tag("star_forge_tier_4_cap");
         public static final TagKey<Item> STAR_FORGE_TIER_5_CAP = tag("star_forge_tier_5_cap");
+        public static final TagKey<Item> STARS = tag("stars");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(StarForge.MOD_ID, name));

@@ -1,7 +1,9 @@
 package com.benbenlaw.starforge.block.entity.client;
 
 import com.benbenlaw.starforge.block.entity.PedestalBlockEntity;
+import com.benbenlaw.starforge.block.entity.StarBlockEntity;
 import com.benbenlaw.starforge.block.entity.StarForgeBlockEntity;
+import com.benbenlaw.starforge.particle.SFParticles;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
@@ -20,16 +22,17 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
+import java.util.Random;
 
 public class PedestalBlockEntityRenderer implements BlockEntityRenderer<PedestalBlockEntity> {
+
+    private final Random random = new Random();
 
     public PedestalBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
-    public void render(PedestalBlockEntity entity, float tick, PoseStack poseStack,
-                       MultiBufferSource bufferSource, int light, int overlay) {
+    public void render(PedestalBlockEntity entity, float tick, PoseStack poseStack, MultiBufferSource bufferSource, int light, int overlay) {
 
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         ItemStack stack = entity.getItemStackHandler().getStackInSlot(0);
@@ -51,7 +54,6 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
         float moveProgress = 0f;
 
         if (forge != null && forge.isCrafting() && forge.getMaxProgress() > 0) {
-
             if (forge.getActivePedestalPositions().contains(entity.getBlockPos())) {
                 moveProgress = (float) forge.getProgress() / forge.getMaxProgress();
                 moveProgress = Math.min(1f, Math.max(0f, moveProgress));
@@ -65,7 +67,6 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
                 blended.z - entity.getBlockPos().getZ()
         );
 
-        // Accelerate spin as item approaches the forge
         float spinMultiplier = 1f + moveProgress * 20f;
         poseStack.mulPose(Axis.YP.rotationDegrees(rotationBase * spinMultiplier));
 
@@ -84,7 +85,30 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
                 model
         );
 
+        if (forge != null && forge.isCrafting()) {
+            renderPedestalParticles(level, blended);
+        }
+
         poseStack.popPose();
+    }
+
+    private void renderPedestalParticles(Level level, Vec3 itemPos) {
+        if (level == null) return;
+        if (Minecraft.getInstance().isPaused()) return;
+
+        double angle = random.nextDouble() * Math.PI * 2;
+        double radius = 0.2 + random.nextDouble() * 0.1;
+        double speed = 0.02;
+
+        double x = itemPos.x + Math.cos(angle) * radius;
+        double y = itemPos.y + 0.05 + random.nextDouble() * 0.1;
+        double z = itemPos.z + Math.sin(angle) * radius;
+
+        double vx = -Math.sin(angle) * speed;
+        double vz = Math.cos(angle) * speed;
+        double vy = 0;
+
+        level.addParticle(SFParticles.PEDESTAL_ITEM.get(), x, y, z, vx, vy, vz);
     }
 
     private static @NotNull Vec3 getVec3(PedestalBlockEntity entity, StarForgeBlockEntity forge, float moveProgress) {
@@ -99,12 +123,28 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
         if (forge != null) {
             end = new Vec3(
                     forge.getBlockPos().getX() + 0.5,
-                    forge.getBlockPos().getY() + 1.2, // tweak this for correct visual alignment
+                    forge.getBlockPos().getY() + 1.2,
                     forge.getBlockPos().getZ() + 0.5
             );
         }
 
         return start.lerp(end, moveProgress);
+    }
+
+    public boolean shouldRenderOffScreen(PedestalBlockEntity p_112138_) { return true; }
+
+    @Override
+    public int getViewDistance() { return 256; }
+
+    public boolean shouldRender(PedestalBlockEntity entity, Vec3 vec3) {
+        return Vec3.atCenterOf(entity.getBlockPos()).multiply(1.0,0.0,1.0)
+                .closerThan(vec3.multiply(1.0,0.0,1.0),(double)this.getViewDistance());
+    }
+
+    @Override
+    public net.minecraft.world.phys.AABB getRenderBoundingBox(PedestalBlockEntity blockEntity) {
+        BlockPos pos = blockEntity.getBlockPos();
+        return new net.minecraft.world.phys.AABB(pos.getX(),pos.getY(),pos.getZ(),pos.getX()+1.0,1024,pos.getZ()+1.0);
     }
 
     private int getLightLevel(Level level, BlockPos pos) {

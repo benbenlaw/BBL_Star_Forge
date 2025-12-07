@@ -1,9 +1,10 @@
-// 1.21.1	2025-11-24T12:29:43.7478375	Recipes
+// 1.21.1	2025-11-25T17:21:31.1286653	Recipes
 4a00bda8459a5be26f86a9ee9c817897a7ab9ead data/starforge/advancement/recipes/forge/forge/blue_star.json
 3e832194fedafcbbcfe56b4b1fdd9b08fccf219e data/starforge/advancement/recipes/forge/forge/cosmic_pillar.json
 90e670d93afbe107cd4046bf2aeb7804687abf24 data/starforge/advancement/recipes/forge/forge/cosmic_planks.json
 aa730edfdd7e16ea9bcf5e1f754a71f4dd0c4ee1 data/starforge/advancement/recipes/forge/forge/orange_star.json
 6cfea11d617ac74cf90a25a59cc8196fe23d53d1 data/starforge/advancement/recipes/forge/forge/red_star.json
+bb4627d397b139bc732bd8ecd170da44b079629b data/starforge/advancement/recipes/forge/forge/star_gem.json
 a725b6fca5ae48088041c87e0b69d4ed02809d64 data/starforge/advancement/recipes/forge/forge/star_ingot.json
 33bcbe9335c0ac65d4f4529a84cf17759ae9d31c data/starforge/advancement/recipes/forge/forge/tier_1_star_forge_cap.json
 a069196044a00b638929f41aa9555b1a54eadd70 data/starforge/advancement/recipes/forge/forge/tier_2_star_forge_cap.json
@@ -19,7 +20,8 @@ b2273a31c5485db249a29496fdad8515d0191f74 data/starforge/recipe/forge/cosmic_pill
 80ecf13976b57a436b189b6c327c2445758d523c data/starforge/recipe/forge/cosmic_planks.json
 728abf0ad24d3ede7c7f77405141476dba8e415c data/starforge/recipe/forge/orange_star.json
 a49b6c1d2c6a4f94826f939dcd590999e92a89cc data/starforge/recipe/forge/red_star.json
-b555b4ab76a577c4054c58cd47bb1355116a9397 data/starforge/recipe/forge/star_ingot.json
+210bda91e2533df4d6f94a68df53d566fb88db29 data/starforge/recipe/forge/star_gem.json
+7c30cc2872130c10d5dda3209f724b2398860934 data/starforge/recipe/forge/star_ingot.json
 a9ff83127d227907ba95d0e7d0f9249944e15f25 data/starforge/recipe/forge/tier_1_star_forge_cap.json
 dbcb7e14639b95e05081d12e7596c3bd893d0f09 data/starforge/recipe/forge/tier_2_star_forge_cap.json
 813f6735516a3e214e5e1537a37fa05908d6ba31 data/starforge/recipe/forge/tier_3_star_forge_cap.json

@@ -1,0 +1,33 @@
+{
+  "type": "starforge:star_forge",
+  "duration": 400,
+  "extra_ingredients": [
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "tag": "c:gems/emerald"
+    },
+    {
+      "tag": "c:gems/quartz"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:gems/amethyst"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    }
+  ],
+  "input": {
+    "tag": "c:gems/diamond"
+  },
+  "result": {
+    "count": 1,
+    "id": "starforge:star_gem"
+  },
+  "star_power": 16000,
+  "tier": 5
+}

@@ -33,11 +33,11 @@ public class SFBlockStatesProvider extends BlockStateProvider {
         blockWithItem(SFBlocks.COSMIC_PLANKS);
         generatePillarBlock(SFBlocks.COSMIC_PILLAR);
 
-        blockWithItem(SFBlocks.TIER_1_STAR_FORGE_CAP);
-        blockWithItem(SFBlocks.TIER_2_STAR_FORGE_CAP);
-        blockWithItem(SFBlocks.TIER_3_STAR_FORGE_CAP);
-        blockWithItem(SFBlocks.TIER_4_STAR_FORGE_CAP);
-        blockWithItem(SFBlocks.TIER_5_STAR_FORGE_CAP);
+        generateCapBlock(SFBlocks.TIER_1_STAR_FORGE_CAP);
+        generateCapBlock(SFBlocks.TIER_2_STAR_FORGE_CAP);
+        generateCapBlock(SFBlocks.TIER_3_STAR_FORGE_CAP);
+        generateCapBlock(SFBlocks.TIER_4_STAR_FORGE_CAP);
+        generateCapBlock(SFBlocks.TIER_5_STAR_FORGE_CAP);
 
 
 
@@ -46,7 +46,7 @@ public class SFBlockStatesProvider extends BlockStateProvider {
 
     private void generateStarBlock(DeferredBlock<Block> blockRegistryObject) {
         String path = blockRegistryObject.getId().getPath();
-        models().withExistingParent(path, modLoc("block/mini_star"))
+        models().withExistingParent(path, modLoc("block/star"))
                 .texture("all", modLoc("block/" + path))
                 .texture("particle", modLoc("block/" + path)).renderType("cutout");
 
@@ -65,6 +65,15 @@ public class SFBlockStatesProvider extends BlockStateProvider {
     private void generatePedestalBlock(DeferredBlock<Block> blockRegistryObject) {
         String path = blockRegistryObject.getId().getPath();
         models().withExistingParent(path, modLoc("block/pedestal_model"))
+                .texture("all", modLoc("block/" + path))
+                .texture("particle", modLoc("block/" + path)).renderType("cutout");
+
+        simpleBlockWithItem(blockRegistryObject.get(), models().getBuilder(path));
+    }
+
+    private void generateCapBlock(DeferredBlock<Block> blockRegistryObject) {
+        String path = blockRegistryObject.getId().getPath();
+        models().withExistingParent(path, modLoc("block/cap"))
                 .texture("all", modLoc("block/" + path))
                 .texture("particle", modLoc("block/" + path)).renderType("cutout");
 

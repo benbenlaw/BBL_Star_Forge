@@ -1,5 +1,15 @@
 Star Forge
 
+1.0.1
+- Updated Yuki Textures
+- Changed hit box of star blocks
+- Updated Star Beam Colors to use the new colors of the stars
+- Particles no longer queue up for spawning when the game is paused
+- Cap Blocks are now their own block with a custom shape
+- Added sounds when crafting on the star forge
+- Capacity proving blocks now show there effects in tooltips
+- Stars now show their tier in tooltips
+
 1.0.0
 - Initial release of Star Forge.
 

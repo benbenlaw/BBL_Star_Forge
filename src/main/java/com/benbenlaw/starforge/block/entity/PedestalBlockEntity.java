@@ -13,6 +13,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -49,7 +52,7 @@ public class PedestalBlockEntity extends SyncableBlockEntity implements IInvento
     };
 
     private final IItemHandler pedestalItemHandler = new InputOutputItemHandler(itemHandler,
-            (i, stack) -> i == 0 ,  //
+            (i, stack) -> i == 0 ,
             i -> false
     );
 
@@ -67,35 +70,40 @@ public class PedestalBlockEntity extends SyncableBlockEntity implements IInvento
     }
 
     public void rightClick(Player player) {
-
         ItemStack heldItem = player.getMainHandItem();
 
+        assert level != null;
+
         if (!heldItem.isEmpty()) {
-            // Insert only one item
             ItemStack toInsert = heldItem.copy();
             toInsert.setCount(1);
 
             ItemStack remaining = itemHandler.insertItem(0, toInsert, false);
+
             if (remaining.isEmpty()) {
-                // Decrease the player's held stack by 1
                 heldItem.shrink(1);
                 player.setItemInHand(player.getUsedItemHand(), heldItem);
+                level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1.0f);
                 setChanged();
                 sync();
+                return;
             }
         }
-        else if (heldItem.isEmpty()) {
-            ItemStack inputStack = itemHandler.getStackInSlot(0);
 
-            if (!inputStack.isEmpty()) {
-                // Extract only one item
-                ItemStack extracted = itemHandler.extractItem(0, 1, false);
+        ItemStack extracted = itemHandler.extractItem(0, 1, false);
+        if (!extracted.isEmpty()) {
+            if (heldItem.isEmpty()) {
                 player.setItemInHand(InteractionHand.MAIN_HAND, extracted);
-                setChanged();
-                sync();
+            } else {
+                boolean added = player.getInventory().add(extracted);
+                if (!added) {
+                    player.drop(extracted, false);
+                }
             }
+            level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1.0f);
+            setChanged();
+            sync();
         }
-
     }
 
 

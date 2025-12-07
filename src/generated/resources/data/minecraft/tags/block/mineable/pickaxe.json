@@ -1,0 +1,16 @@
+{
+  "values": [
+    "starforge:blue_star",
+    "starforge:white_star",
+    "starforge:yellow_star",
+    "starforge:orange_star",
+    "starforge:red_star",
+    "starforge:star_forge",
+    "starforge:pedestal",
+    "starforge:tier_1_star_forge_cap",
+    "starforge:tier_2_star_forge_cap",
+    "starforge:tier_3_star_forge_cap",
+    "starforge:tier_4_star_forge_cap",
+    "starforge:tier_5_star_forge_cap"
+  ]
+}

@@ -4,9 +4,15 @@ import com.benbenlaw.starforge.block.SFBlockEntities;
 import com.benbenlaw.starforge.block.entity.StarBlockEntity;
 import com.benbenlaw.starforge.block.entity.StarForgeBlockEntity;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -19,13 +25,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class StarBlock extends BaseEntityBlock {
 
     public static final MapCodec<StarBlock> CODEC = simpleCodec(props -> new StarBlock(props, 0, 0, 0xFFFFFF));
-    private static final VoxelShape SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 8.0, 12.0);
+    private static final VoxelShape SHAPE = Block.box(4.0, 4.0, 4.0, 12.0, 12.0, 12.0);
 
     private final int transferRate;
     private final int starPowerCapacity;
@@ -41,6 +51,22 @@ public class StarBlock extends BaseEntityBlock {
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, @NotNull Item.TooltipContext context, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
+
+        if (Screen.hasShiftDown()) {
+
+            components.add(Component.literal("Star Capacity: " + getStarPowerCapacity()).withStyle(ChatFormatting.YELLOW));
+            components.add(Component.literal("Star Power Transfer Per Tick: " + getTransferRate()).withStyle(ChatFormatting.YELLOW));
+        }
+
+        else {
+            components.add(Component.translatable("tooltips.bblcore.shift").withStyle(ChatFormatting.YELLOW));
+        }
+
+        super.appendHoverText(itemStack, context, components, flag);
     }
 
     public int getTransferRate() {

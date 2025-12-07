@@ -35,6 +35,14 @@ public class SFItemTags extends ItemTagsProvider {
         tag(SFTags.Items.STAR_FORGE_TIER_3_CAP).add(SFBlocks.TIER_3_STAR_FORGE_CAP.get().asItem());
         tag(SFTags.Items.STAR_FORGE_TIER_4_CAP).add(SFBlocks.TIER_4_STAR_FORGE_CAP.get().asItem());
         tag(SFTags.Items.STAR_FORGE_TIER_5_CAP).add(SFBlocks.TIER_5_STAR_FORGE_CAP.get().asItem());
+
+        tag(SFTags.Items.STARS).add(
+                SFBlocks.BLUE_STAR.get().asItem(),
+                SFBlocks.WHITE_STAR.get().asItem(),
+                SFBlocks.YELLOW_STAR.get().asItem(),
+                SFBlocks.ORANGE_STAR.get().asItem(),
+                SFBlocks.RED_STAR.get().asItem()
+        );
     }
 
     @Override

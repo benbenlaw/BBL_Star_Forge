@@ -5,6 +5,7 @@ import com.benbenlaw.core.block.entity.handler.IInventoryHandlingBlockEntity;
 import com.benbenlaw.core.block.entity.handler.InputOutputItemHandler;
 import com.benbenlaw.starforge.block.SFBlockEntities;
 import com.benbenlaw.starforge.block.custom.StarBlock;
+import com.benbenlaw.starforge.config.SFConfig;
 import com.benbenlaw.starforge.recipe.StarForgeRecipe;
 import com.benbenlaw.starforge.recipe.StarForgeRecipeInput;
 import com.benbenlaw.starforge.util.SFTags;
@@ -16,6 +17,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -82,9 +86,10 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
 
     public void tick() {
         Level level = this.getLevel();
+        assert level != null;
+
         if (level.isClientSide()) return;
 
-        assert level != null;
         charge(level);
 
         if (currentRecipe == null || !matchingRecipe(level).map(r -> r.value().equals(currentRecipe.value())).orElse(false)) {
@@ -92,10 +97,10 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
             progress = 0;
         }
 
-        int tier = getStructureTier(level);
+        int forgeTier = getStructureTier(level);
         boolean canCraft = currentRecipe != null
                 && canInsertResult(currentRecipe)
-                && tier != -1  // structure must be valid
+                && forgeTier >= currentRecipe.value().tier()
                 && starPower >= currentRecipe.value().starPower();
 
         if (canCraft) {
@@ -127,6 +132,13 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
 
             // --- Progress crafting ---
             progress++;
+            if (progress == 1) {
+                level.playSound(null, worldPosition, SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 0.5f, 0.3f);
+            }
+
+            if (progress == 20) {
+                level.playSound(null, worldPosition, SoundEvents.BEACON_AMBIENT, SoundSource.BLOCKS, 0.5f, 0.3f);
+            }
             sync();
 
             // Craft finished
@@ -145,7 +157,7 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
                 // Output result
                 itemHandler.insertItem(1, currentRecipe.value().result().copy(), false);
                 starPower -= currentRecipe.value().starPower();
-
+                level.playSound(null, worldPosition, SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 0.5f, 0.3f);
                 // Reset
                 progress = 0;
                 maxProgress = 0;
@@ -263,9 +275,6 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
         sync();
     }
 
-
-
-
     public int getStructureTier(Level level) {
         for (int t = 5; t >= 1; t--) {
             if (checkStructure(level, t)) return t;
@@ -326,54 +335,61 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
     }
 
     public void rightClick(Player player) {
-
         ItemStack heldItem = player.getMainHandItem();
 
+        // Stick debug message
         if (heldItem.is(Items.STICK)) {
             player.sendSystemMessage(Component.nullToEmpty(starPower + "/" + getMaxStarPower(getStructureTier(level))));
+            return;
         }
-        else if (!heldItem.isEmpty()) {
-            // Insert only one item at a time
+
+        ItemStack outputStack = itemHandler.getStackInSlot(1);
+        ItemStack inputStack = itemHandler.getStackInSlot(0);
+
+        ItemStack extracted = ItemStack.EMPTY;
+
+        if (!outputStack.isEmpty()) {
+            extracted = itemHandler.extractItem(1, 1, false);
+        } else if (!inputStack.isEmpty()) {
+            extracted = itemHandler.extractItem(0, 1, false);
+        }
+
+        if (!extracted.isEmpty()) {
+            if (heldItem.isEmpty()) {
+                player.setItemInHand(InteractionHand.MAIN_HAND, extracted);
+            } else {
+                boolean added = player.getInventory().add(extracted);
+                if (!added) player.drop(extracted, false);
+            }
+            level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1.0f);
+            setChanged();
+            sync();
+            return;
+        }
+
+        if (!heldItem.isEmpty()) {
             ItemStack toInsert = heldItem.copy();
-            toInsert.setCount(1); // just 1 item
+            toInsert.setCount(1);
 
             ItemStack remaining = itemHandler.insertItem(0, toInsert, false);
             if (remaining.isEmpty()) {
-                // Successfully inserted 1 item, decrease player's held stack by 1
                 heldItem.shrink(1);
                 player.setItemInHand(player.getUsedItemHand(), heldItem);
+                level.playSound(null, worldPosition, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.5f, 1.0f);
                 setChanged();
                 sync();
             }
         }
-        else if (heldItem.isEmpty()) {
-
-            ItemStack inputStack = itemHandler.getStackInSlot(0);
-            ItemStack outputStack = itemHandler.getStackInSlot(1);
-
-            if (!outputStack.isEmpty()) {
-                ItemStack extracted = itemHandler.extractItem(1, 1, false); // take 1 item
-                player.setItemInHand(InteractionHand.MAIN_HAND, extracted);
-            } else if (!inputStack.isEmpty()) {
-                ItemStack extracted = itemHandler.extractItem(0, 1, false); // take 1 item
-                player.setItemInHand(InteractionHand.MAIN_HAND, extracted);
-            }
-
-            setChanged();
-            sync();
-        }
-
     }
-
 
     public int getMaxStarPower(int tier) {
         return switch (tier) {
-            case 1 -> 1000;
-            case 2 -> 2000;
-            case 3 -> 4000;
-            case 4 -> 8000;
-            case 5 -> 16000;
-            default -> 500;
+            case 1 -> SFConfig.forgeCapacityCap1.get();
+            case 2 -> SFConfig.forgeCapacityCap2.get();
+            case 3 -> SFConfig.forgeCapacityCap3.get();
+            case 4 -> SFConfig.forgeCapacityCap4.get();
+            case 5 -> SFConfig.forgeCapacityCap5.get();
+            default -> SFConfig.forgeCapacity.get();
         };
     }
 

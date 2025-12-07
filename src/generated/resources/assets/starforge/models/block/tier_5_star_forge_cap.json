@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "starforge:block/cap",
+  "render_type": "minecraft:cutout",
   "textures": {
-    "all": "starforge:block/tier_5_star_forge_cap"
+    "all": "starforge:block/tier_5_star_forge_cap",
+    "particle": "starforge:block/tier_5_star_forge_cap"
   }
 }
