@@ -1,11 +1,11 @@
-// 1.21.1	2025-11-25T17:21:31.1251185	starforge Block Tags
+// 1.21.1	2025-12-30T11:51:44.715615	starforge Block Tags
 b097dde9b34708a7e7b128a423772482792ee27c data/minecraft/tags/block/mineable/axe.json
 7693a67cecc0f2d0854c5b0ef1f68bfd4c73a53a data/minecraft/tags/block/mineable/pickaxe.json
 4abebdc7f21fe6dd16072d27ade54f1efec15e1d data/starforge/tags/block/stars.json
 c061087994ede0ee5f30580d13760b9212884533 data/starforge/tags/block/star_forge_base_blocks.json
 e49bedca4fcba584cc0f4d6c80f69dd18a5a1c06 data/starforge/tags/block/star_forge_pillar_blocks.json
-71d4c0351a0e2c8fbcf0b2a9ca5827985fd00026 data/starforge/tags/block/star_forge_tier_1_cap.json
-df297caad720b93cc5fc879df3a6e9b11fa2678e data/starforge/tags/block/star_forge_tier_2_cap.json
-e2bce6bff8c50ac74d1d4202934555a231f199d3 data/starforge/tags/block/star_forge_tier_3_cap.json
-b5bd5605b7f8d3e99161e3218bd89c1de9c175dd data/starforge/tags/block/star_forge_tier_4_cap.json
+0c61b07741eb8ff94c724a55d2c0580332679876 data/starforge/tags/block/star_forge_tier_1_cap.json
+61f0b2c32d4b6e7df184d59273ce06352a34468a data/starforge/tags/block/star_forge_tier_2_cap.json
+ac8b562ec8ae989e5abe4e22dfb368e2fdad1b17 data/starforge/tags/block/star_forge_tier_3_cap.json
+89c7e819b3900594da1847cfba63310eaa60b6df data/starforge/tags/block/star_forge_tier_4_cap.json
 85949ac0a2d707b2453ec43366aa1a4510c8dae2 data/starforge/tags/block/star_forge_tier_5_cap.json

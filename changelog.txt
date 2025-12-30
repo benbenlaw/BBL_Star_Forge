@@ -1,5 +1,9 @@
 Star Forge
 
+1.0.2
+- Fixed Cap tags not including above tiers
+- This fixes issues where you need all caps to be the same tier for that tier of recipe, caps can be mixed now and the lowerest tier cap will be the max tier of the star forge
+
 1.0.1
 - Updated Yuki Textures
 - Changed hit box of star blocks

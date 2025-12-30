@@ -25,10 +25,28 @@ public class SFBlockTags extends BlockTagsProvider {
 
         tag(SFTags.Blocks.STAR_FORGE_PILLAR_BLOCKS).add(SFBlocks.COSMIC_PILLAR.get());
 
-        tag(SFTags.Blocks.STAR_FORGE_TIER_1_CAP).add(SFBlocks.TIER_1_STAR_FORGE_CAP.get());
-        tag(SFTags.Blocks.STAR_FORGE_TIER_2_CAP).add(SFBlocks.TIER_2_STAR_FORGE_CAP.get());
-        tag(SFTags.Blocks.STAR_FORGE_TIER_3_CAP).add(SFBlocks.TIER_3_STAR_FORGE_CAP.get());
-        tag(SFTags.Blocks.STAR_FORGE_TIER_4_CAP).add(SFBlocks.TIER_4_STAR_FORGE_CAP.get());
+        tag(SFTags.Blocks.STAR_FORGE_TIER_1_CAP)
+                .add(SFBlocks.TIER_1_STAR_FORGE_CAP.get())
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_2_CAP)
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_3_CAP)
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_4_CAP)
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_5_CAP);
+
+        tag(SFTags.Blocks.STAR_FORGE_TIER_2_CAP)
+                .add(SFBlocks.TIER_2_STAR_FORGE_CAP.get())
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_3_CAP)
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_4_CAP)
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_5_CAP);
+
+        tag(SFTags.Blocks.STAR_FORGE_TIER_3_CAP)
+                .add(SFBlocks.TIER_3_STAR_FORGE_CAP.get())
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_4_CAP)
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_5_CAP);
+
+        tag(SFTags.Blocks.STAR_FORGE_TIER_4_CAP)
+                .add(SFBlocks.TIER_4_STAR_FORGE_CAP.get())
+                .addTag(SFTags.Blocks.STAR_FORGE_TIER_5_CAP);
+
         tag(SFTags.Blocks.STAR_FORGE_TIER_5_CAP).add(SFBlocks.TIER_5_STAR_FORGE_CAP.get());
 
         tag(SFTags.Blocks.STARS).add(

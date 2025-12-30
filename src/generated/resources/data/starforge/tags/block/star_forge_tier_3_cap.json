@@ -1,5 +1,7 @@
 {
   "values": [
-    "starforge:tier_3_star_forge_cap"
+    "starforge:tier_3_star_forge_cap",
+    "#starforge:star_forge_tier_4_cap",
+    "#starforge:star_forge_tier_5_cap"
   ]
 }
