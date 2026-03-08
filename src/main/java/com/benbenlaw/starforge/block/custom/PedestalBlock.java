@@ -55,12 +55,12 @@ public class PedestalBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     public void onRemove(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 
-        //if (pState.getBlock() != pNewState.getBlock()) {
-        //    BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        //    if (blockEntity instanceof WoodenStrainockEntity) {
-        //        ((WoodenStrainerBlockEntity) blockEntity).drops();
-        //    }
-        //}
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof PedestalBlockEntity) {
+                ((PedestalBlockEntity) blockEntity).drops();
+            }
+        }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 

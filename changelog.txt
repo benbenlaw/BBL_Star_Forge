@@ -1,5 +1,11 @@
 Star Forge
 
+1.0.4
+- Active pedestals now check correctly so if one is working and item is remove the recipe becomes invalid and re checks over pedestals to continue crafting if possible
+
+1.0.3
+- Fixed Pedestal and Star Forge not dropping its inventory when broken
+
 1.0.2
 - Fixed Cap tags not including above tiers
 - This fixes issues where you need all caps to be the same tier for that tier of recipe, caps can be mixed now and the lowerest tier cap will be the max tier of the star forge

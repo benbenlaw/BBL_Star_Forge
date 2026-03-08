@@ -65,12 +65,12 @@ public class StarForgeBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     public void onRemove(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
 
-        //if (pState.getBlock() != pNewState.getBlock()) {
-        //    BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        //    if (blockEntity instanceof WoodenStrainerBlockEntity) {
-        //        ((WoodenStrainerBlockEntity) blockEntity).drops();
-        //    }
-        //}
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof StarForgeBlockEntity) {
+                ((StarForgeBlockEntity) blockEntity).drops();
+            }
+        }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 

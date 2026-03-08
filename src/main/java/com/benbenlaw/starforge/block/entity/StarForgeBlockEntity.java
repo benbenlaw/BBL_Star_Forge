@@ -20,7 +20,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -101,7 +103,9 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
         boolean canCraft = currentRecipe != null
                 && canInsertResult(currentRecipe)
                 && forgeTier >= currentRecipe.value().tier()
-                && starPower >= currentRecipe.value().starPower();
+                && starPower >= currentRecipe.value().starPower()
+                && (!isCrafting || pedestalsStillValid(level));
+        ;
 
         if (canCraft) {
 
@@ -491,5 +495,42 @@ public class StarForgeBlockEntity extends SyncableBlockEntity implements IInvent
             NbtUtils.readBlockPos(posTag, "pos").ifPresent(activePedestalPositions::add);
         }
 
+    }
+
+    public void drops() {
+        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+        assert this.level != null;
+        Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
+
+    private boolean pedestalsStillValid(Level level) {
+        if (currentRecipe == null) return false;
+
+        if (currentRecipe.value().extraIngredients().isEmpty()) return true;
+
+        List<Ingredient> extras = new ArrayList<>(currentRecipe.value().extraIngredients().get());
+
+        for (BlockPos pos : activePedestalPositions) {
+            if (!(level.getBlockEntity(pos) instanceof PedestalBlockEntity pedestal))
+                return false;
+
+            ItemStack stack = pedestal.getItemStackHandler().getStackInSlot(0);
+
+            boolean matched = false;
+            for (Ingredient ingredient : extras) {
+                if (ingredient.test(stack)) {
+                    extras.remove(ingredient);
+                    matched = true;
+                    break;
+                }
+            }
+
+            if (!matched) return false;
+        }
+
+        return extras.isEmpty();
     }
 }
